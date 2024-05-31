@@ -1,10 +1,10 @@
 #include <ncurses.h>
 
+#include "app.h"
+
 int main() {
-    initscr();			/* Start curses mode 		  */
-	printw("Hello World! Press any key to exit ...");	/* Print Hello World		  */
-	refresh();			/* Print it on to the real screen */
-	getch();			/* Wait for user input */
-	endwin();			/* End curses mode		  */
+    App app;
+    app.run();
+
 	return 0;
 }

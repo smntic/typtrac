@@ -1,5 +1,9 @@
 set(SOURCES
     main.cpp
+    app.cpp
+    app_window.cpp
+    window.cpp
+    type_box.cpp
 )
 
 set(INCLUDE_DIRS
