@@ -5,11 +5,17 @@ App::App() {
     initscr();
     cbreak();
     noecho();
+    curs_set(0);
+    nodelay(stdscr, true);
 
-    int rows, cols;
-    getmaxyx(stdscr, rows, cols);
     window = std::make_unique<AppWindow>();
     window->init();
+
+    focus_state = std::make_shared<FocusState>();
+    focus_state->add_focusable_window(window->get_focusable_windows());
+
+    input = std::make_unique<Input>();
+    input->set_focus_state(focus_state);
 }
 
 void App::run() {
@@ -18,13 +24,19 @@ void App::run() {
         int rows, cols;
         getmaxyx(stdscr, rows, cols);
 
-        window->clear();
+        // window->clear();
         window->update();
-        window->update_rect(rows, cols);
+
+        if (rows != prev_rows || cols != prev_cols) {
+            prev_rows = rows;
+            prev_cols = cols;
+            window->update_rect(rows, cols);
+        }
+
         window->render();
         refresh();
         window->refresh();
-        getch(); // this is here for now, but will be in an input class later
+        input->get_input();
     }
 
     endwin();

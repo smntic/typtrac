@@ -9,6 +9,7 @@ private:
     void custom_init() override;
     void custom_update() override;
     void custom_update_rect(int rows, int cols) override;
+    void custom_handle_input(std::shared_ptr<InputEvent> event) override;
 
     std::shared_ptr<TypeBox> type_box;
 };

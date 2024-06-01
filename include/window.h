@@ -1,6 +1,7 @@
 #ifndef TYPTRAC_WINDOW_H
 #define TYPTRAC_WINDOW_H
 
+#include "input_event.h"
 #include <ncurses.h>
 #include <memory>
 #include <vector>
@@ -23,6 +24,13 @@ public:
     void add_child(std::shared_ptr<Window> child);
     void remove_child(std::shared_ptr<Window> child);
 
+    void set_parent(std::shared_ptr<Window> parent);
+    void remove_parent();
+
+    void handle_input(std::shared_ptr<InputEvent> event);
+
+    std::vector<std::shared_ptr<Window>> get_focusable_windows();
+
 private:
     struct WinDelete {
         void operator()(WINDOW* win) const {
@@ -31,7 +39,10 @@ private:
     };
     
     std::vector<std::shared_ptr<Window>> children;
+    std::shared_ptr<Window> parent;
     int origin_y, origin_x;
+
+    void set_defaults();
 
     void create_window(WINDOW *parent);
 
@@ -44,9 +55,14 @@ private:
 
     virtual void custom_update_rect(int rows, int cols);
 
+    virtual void custom_handle_input(std::shared_ptr<InputEvent> event) {};
+
+    void get_focusable_windows(std::vector<std::shared_ptr<Window>> &focusable_windows);
+
 protected:
     std::unique_ptr<WINDOW, WinDelete> win;
     int height, width, start_y, start_x;
+    bool focusable;
 };
 
 #endif //TYPTRAC_WINDOW_H

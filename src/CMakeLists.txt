@@ -4,6 +4,9 @@ set(SOURCES
     app_window.cpp
     window.cpp
     type_box.cpp
+    input.cpp
+    input_event.cpp
+    focus_state.cpp
 )
 
 set(INCLUDE_DIRS
