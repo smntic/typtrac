@@ -1,14 +1,13 @@
 #ifndef TYPTRAC_TYPE_TEXT_H
 #define TYPTRAC_TYPE_TEXT_H
 
+#include "word_picker.h"
 #include <string>
 
 class TypeText {
 public:
-    TypeText() = default;
+    TypeText();
     ~TypeText() = default;
-
-    void set_text(const std::string &text);
 
     void type_char(char ch);
     void delete_char();
@@ -19,6 +18,11 @@ public:
 
 private:
     std::string typed_text, wrong_text, untyped_text;
+    WordPicker word_picker;
+
+    void update_text();
+    void generate_word();
+    void add_word(std::string word);
 };
 
 #endif //TYPTRAC_TYPE_TEXT_H

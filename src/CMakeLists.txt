@@ -12,6 +12,7 @@ set(SOURCES
     type_text.cpp
     type_stats.cpp
     stats_box.cpp
+    word_picker.cpp
 )
 
 set(INCLUDE_DIRS

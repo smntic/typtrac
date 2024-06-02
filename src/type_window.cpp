@@ -12,8 +12,6 @@ void TypeWindow::custom_init() {
     stats_box->init();
 
     type_text = std::make_shared<TypeText>();
-    type_text->set_text("this is a test of the cool thing i just made");
-
     type_stats = std::make_shared<TypeStats>();
 }
 
