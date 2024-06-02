@@ -13,13 +13,6 @@ void TypeBox::custom_render() {
     mvwprintw(win.get(), 0, untyped_text_offset, "%s", untyped_text.c_str());
 }
 
-void TypeBox::custom_update_rect(int rows, int cols) {
-    this->height = rows;
-    this->width = cols - 2 * PADDING;
-    this->start_y = 0;
-    this->start_x = PADDING;
-}
-
 void TypeBox::set_text(const std::string &typed_text, const std::string &wrong_text, const std::string &untyped_text) {
     this->typed_text = typed_text;
     this->wrong_text = wrong_text;

@@ -3,7 +3,9 @@
 
 #include "window.h"
 #include "type_box.h"
+#include "stats_box.h"
 #include "type_text.h"
+#include "type_stats.h"
 
 class TypeWindow : public Window {
 private:
@@ -13,8 +15,8 @@ private:
 
     std::shared_ptr<TypeBox> type_box;
     std::shared_ptr<TypeText> type_text;
-    // std::shared_ptr<StatsBox> stats_box; // TODO: stats box
-    // std::shared_ptr<TypeStats> type_stats;
+    std::shared_ptr<StatsBox> stats_box;
+    std::shared_ptr<TypeStats> type_stats;
 
     void type_char(char ch);
     void delete_char();

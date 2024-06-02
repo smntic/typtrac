@@ -9,6 +9,7 @@ public:
         TYPED_TEXT = 1,
         WRONG_TEXT,
         UNTYPED_TEXT,
+        STATS_TEXT,
     };
 };
 

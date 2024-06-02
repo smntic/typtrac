@@ -10,6 +10,8 @@ set(SOURCES
     color.cpp
     type_window.cpp
     type_text.cpp
+    type_stats.cpp
+    stats_box.cpp
 )
 
 set(INCLUDE_DIRS
