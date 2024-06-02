@@ -3,6 +3,11 @@
 void Input::get_input() {
     int keycode = getch();
     if (keycode == -1) return;
+
+    if (keycode == 127) {
+        keycode = KEY_BACKSPACE;
+    }
+
     std::shared_ptr<InputEvent> event = std::make_shared<InputEvent>(keycode);
     handle_input(event);
 }

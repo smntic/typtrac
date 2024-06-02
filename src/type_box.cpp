@@ -1,11 +1,16 @@
 #include "type_box.h"
-
-void TypeBox::custom_init() {
-    focusable = true;
-}
+#include "color.h"
 
 void TypeBox::custom_render() {
-    mvwprintw(win.get(), 0, 0, "%s", text.c_str());
+    int wrong_text_offset = (int)typed_text.length();
+    int untyped_text_offset = wrong_text_offset + (int)wrong_text.length();
+
+    wattron(win.get(), COLOR_PAIR(Color::TYPED_TEXT));
+    mvwprintw(win.get(), 0, 0, "%s", typed_text.c_str());
+    wattron(win.get(), COLOR_PAIR(Color::WRONG_TEXT));
+    mvwprintw(win.get(), 0, wrong_text_offset, "%s", wrong_text.c_str());
+    wattron(win.get(), COLOR_PAIR(Color::UNTYPED_TEXT));
+    mvwprintw(win.get(), 0, untyped_text_offset, "%s", untyped_text.c_str());
 }
 
 void TypeBox::custom_update_rect(int rows, int cols) {
@@ -15,19 +20,8 @@ void TypeBox::custom_update_rect(int rows, int cols) {
     this->start_x = PADDING;
 }
 
-void TypeBox::custom_handle_input(std::shared_ptr<InputEvent> event) {
-    // if (event.type == InputEventType::CHARACTER) {
-    //     text += event.character;
-    // } else if (event.type == InputEventType::KEY) {
-    //     if (event.key == Key::BACKSPACE) {
-    //         if (!text.empty()) {
-    //             text.pop_back();
-    //         }
-    //     }
-    // }
+void TypeBox::set_text(const std::string &typed_text, const std::string &wrong_text, const std::string &untyped_text) {
+    this->typed_text = typed_text;
+    this->wrong_text = wrong_text;
+    this->untyped_text = untyped_text;
 }
-
-void TypeBox::set_text(const std::string &text) {
-    this->text = text;
-}
-

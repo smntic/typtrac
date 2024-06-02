@@ -2,16 +2,14 @@
 #define TYPTRAC_APP_WINDOW_H
 
 #include "window.h"
-#include "type_box.h"
+#include "type_window.h"
 
 class AppWindow : public Window {
 private:
     void custom_init() override;
-    void custom_update() override;
     void custom_update_rect(int rows, int cols) override;
-    void custom_handle_input(std::shared_ptr<InputEvent> event) override;
 
-    std::shared_ptr<TypeBox> type_box;
+    std::shared_ptr<TypeWindow> type_window;
 };
 
 

@@ -7,6 +7,9 @@ set(SOURCES
     input.cpp
     input_event.cpp
     focus_state.cpp
+    color.cpp
+    type_window.cpp
+    type_text.cpp
 )
 
 set(INCLUDE_DIRS
