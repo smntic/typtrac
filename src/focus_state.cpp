@@ -8,6 +8,7 @@ FocusState::FocusState()
 void FocusState::handle_focus_input(std::shared_ptr<InputEvent> event) {
     if (event->keycode() == '\t') {
         cycle_focus();
+        event->consume();
     }
 }
 

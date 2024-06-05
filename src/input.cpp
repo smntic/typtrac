@@ -18,6 +18,8 @@ void Input::set_focus_state(std::shared_ptr<FocusState> focus) {
 
 void Input::handle_input(std::shared_ptr<InputEvent> event) {
     focus_state->handle_focus_input(event);
-    focus_state->handle_input(event);
+    if (!event->consumed()) {
+        focus_state->handle_input(event);
+    }
 }
 

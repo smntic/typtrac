@@ -9,9 +9,9 @@ void TypeBoxFormatting::format(std::string &typed_text, std::string &wrong_text,
 void TypeBoxFormatting::format_wrong_text(std::string &wrong_text) {
     std::string formatted_text;
     for (auto &ch : wrong_text) {
-        if (ch == ' ') {
+        if (ch == ' ' || ch == '\n') {
             ch = '_';
-        }
+        } 
     }
 }
 
