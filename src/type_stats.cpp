@@ -2,31 +2,60 @@
 #include <algorithm>
 #include <chrono>
 
-TypeStats::TypeStats() {
-    start_seconds = get_seconds();
+TypeStats::TypeStats() 
+    : max_duration(MAX_DURATION), words_queue(max_duration), chars_queue(max_duration), errors_queue(max_duration) {
+    double start_time = get_seconds();
+    words_queue.start(start_time);
+    chars_queue.start(start_time);
+    errors_queue.start(start_time);
 }
 
 void TypeStats::update(const std::string &typed_text, const std::string &wrong_text, const std::string &untyped_text) {
+    this->typed_text = typed_text;
+    this->wrong_text = wrong_text;
+    this->untyped_text = untyped_text;
+
+    update_changes();
+    update_queues();
+    update_stats();
+}
+
+void TypeStats::update_changes() {
+    d_words = d_chars = d_errors = 0;
+
     if (wrong_text.size() > prev_wrong_text.size()) {
-        total_errors += wrong_text.size() - prev_wrong_text.size();
+        d_errors = (int)wrong_text.size() - prev_wrong_text.size();
     }
 
     int cur_chars = typed_text.size();
     int cur_words = std::count(typed_text.begin(), typed_text.end(), ' ');
 
-    total_chars = std::max(cur_chars, total_chars);
-    total_words = std::max(cur_words, total_words);
+    if (cur_words > total_words) {
+        d_words = cur_words - total_words;
+        total_words = cur_words;
+    }
+    if (cur_chars > total_chars) {
+        d_chars = cur_chars - total_chars;
+        total_chars = cur_chars;
+    }
+}
 
+void TypeStats::update_queues() {
     double seconds = get_seconds();
-    double elapsed = seconds - start_seconds;
+    words_queue.update(seconds);
+    chars_queue.update(seconds);
+    errors_queue.update(seconds);
 
-    wpm = total_words / elapsed * 60.0;
-    cpm = total_chars / elapsed * 60.0;
-    accuracy = std::max(0.0, 1 - (double)total_errors / total_chars);
+    words_queue.add(seconds, d_words);
+    chars_queue.add(seconds, d_chars);
+    errors_queue.add(seconds, d_errors);
+}
 
-    prev_typed_text = typed_text;
-    prev_wrong_text = wrong_text;
-    prev_untyped_text = untyped_text;
+void TypeStats::update_stats() {
+    double cur_duration = words_queue.get_duration();
+    wpm = words_queue.query() / cur_duration * 60.0;
+    cpm = chars_queue.query() / cur_duration * 60.0;
+    accuracy = std::max(0.0, 1 - (double)errors_queue.query() / chars_queue.query());
 }
 
 double TypeStats::get_wpm() const {

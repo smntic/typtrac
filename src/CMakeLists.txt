@@ -15,6 +15,7 @@ set(SOURCES
     word_picker.cpp
     type_box_formatting.cpp
     terminal.cpp
+    time_queue.cpp
 )
 
 set(INCLUDE_DIRS
