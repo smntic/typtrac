@@ -2,7 +2,7 @@
 #include "color.h"
 
 void StatsBox::custom_init() {
-    text_format = "WPM: %.2f CPM: %.2f Accuracy: %.2f%%";
+    text_format = "WPM: %d CPM: %d Accuracy: %d%%";
 }
 
 void StatsBox::custom_update() {
@@ -15,6 +15,8 @@ void StatsBox::custom_update() {
 void StatsBox::custom_render() {
     wattron(win.get(), COLOR_PAIR(Color::STATS_TEXT));
     mvwprintw(win.get(), 0, 0, "%s", stats_text.c_str());
+
+    wclrtoeol(win.get());
 }
 
 void StatsBox::custom_update_rect(int rows, int cols) {

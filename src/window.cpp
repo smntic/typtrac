@@ -1,9 +1,9 @@
 #include "window.h"
 #include <algorithm>
 
-void Window::init(WINDOW *parent) {
+void Window::init() {
     set_defaults();
-    create_window(parent);
+    create_window();
     custom_init();
 }
 
@@ -12,12 +12,8 @@ void Window::set_defaults() {
     height = width = start_y = start_x = origin_y = origin_x = 0;
 }
 
-void Window::create_window(WINDOW *parent) {
-    if (parent) {
-        win = std::unique_ptr<WINDOW, WinDelete>(subwin(parent, height, width, start_y, start_x));
-    } else {
-        win = std::unique_ptr<WINDOW, WinDelete>(newwin(height, width, start_y, start_x));
-    }
+void Window::create_window() {
+    win = std::unique_ptr<WINDOW, WinDelete>(newwin(height, width, start_y, start_x));
 }
 
 void Window::clear() {

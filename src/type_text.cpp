@@ -31,7 +31,7 @@ void TypeText::delete_char() {
 void TypeText::update_text() {
     int untyped_words = std::count(untyped_text.begin(), untyped_text.end(), ' ');
 
-    while (untyped_words < 5) { // TODO: magic number
+    while (untyped_words < WORDS_AHEAD) {
         generate_word();
         untyped_words++;
     }

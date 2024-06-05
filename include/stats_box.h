@@ -15,7 +15,7 @@ public:
     void set_stats(double wpm, double cpm, double accuracy);
 
 private:
-    double wpm, cpm, accuracy;
+    int wpm, cpm, accuracy;
     std::string text_format;
     std::string stats_text;
 };

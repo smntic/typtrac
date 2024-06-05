@@ -13,6 +13,8 @@ set(SOURCES
     type_stats.cpp
     stats_box.cpp
     word_picker.cpp
+    type_box_formatting.cpp
+    terminal.cpp
 )
 
 set(INCLUDE_DIRS

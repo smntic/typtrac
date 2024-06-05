@@ -1,20 +1,11 @@
 #include "app.h"
+#include "terminal.h"
 #include "color.h"
 #include <ncurses.h>
 
 App::App() {
-    // TODO: this as well (see below)
-    initscr();
-    cbreak();
-    noecho();
-    curs_set(0);
-    nodelay(stdscr, true);
-
-    // TODO: separate this into a function
-    start_color();
-    use_default_colors(); // https://stackoverflow.com/questions/2403399/ncurses-transparent-console-background
-    assume_default_colors(-1, -1);
-    Color::init_pairs();
+    Terminal::init();
+    Color::init();
 
     window = std::make_unique<AppWindow>();
     window->init();
@@ -32,19 +23,17 @@ void App::run() {
         int rows, cols;
         getmaxyx(stdscr, rows, cols);
 
-        // TODO: clear on SIGWINCH
-        // window->clear();
-        window->update();
-
         if (rows != prev_rows || cols != prev_cols) {
             prev_rows = rows;
             prev_cols = cols;
             window->update_rect(rows, cols);
         }
 
+        window->update();
+
         window->render();
-        refresh();
         window->refresh();
+
         input->get_input();
     }
 

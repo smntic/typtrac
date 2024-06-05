@@ -7,8 +7,3 @@ void AppWindow::custom_init() {
     type_window->init();
 }
 
-void AppWindow::custom_update_rect(int rows, int cols) {
-    start_y = start_x = 2;
-    height = rows - 4, width = cols - 4;
-}
-

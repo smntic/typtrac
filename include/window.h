@@ -11,7 +11,7 @@ public:
     Window() = default;
     ~Window() = default;
 
-    void init(WINDOW *parent = nullptr); // is this really the only way?
+    void init(); // is this really the only way?
 
     void clear();
     void update();
@@ -44,7 +44,7 @@ private:
 
     void set_defaults();
 
-    void create_window(WINDOW *parent);
+    void create_window();
 
     virtual void custom_init() {};
 

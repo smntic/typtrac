@@ -17,6 +17,8 @@ public:
     std::string get_untyped() const;
 
 private:
+    const int WORDS_AHEAD = 5;
+
     std::string typed_text, wrong_text, untyped_text;
     WordPicker word_picker;
 

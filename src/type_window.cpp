@@ -16,7 +16,7 @@ void TypeWindow::custom_init() {
 }
 
 void TypeWindow::custom_update() {
-    std::string typed_text = type_text->get_typed(); // TODO: we can just call these "typed"???
+    std::string typed_text = type_text->get_typed();
     std::string wrong_text = type_text->get_wrong();
     std::string untyped_text = type_text->get_untyped();
     type_box->set_text(typed_text, wrong_text, untyped_text);
