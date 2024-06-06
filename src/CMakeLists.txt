@@ -16,6 +16,8 @@ set(SOURCES
     type_box_formatting.cpp
     terminal.cpp
     time_queue.cpp
+    pair_times.cpp
+    pair_timer.cpp
 )
 
 set(INCLUDE_DIRS

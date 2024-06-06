@@ -1,7 +1,8 @@
 #ifndef TYPTRAC_RANDOM_H
 #define TYPTRAC_RANDOM_H
 
-#include <string>
+#include "pair_times.h"
+#include <memory>
 #include <vector>
 
 class WordPicker {
@@ -9,7 +10,7 @@ public:
     WordPicker();
     ~WordPicker() = default;
 
-    // void update_biases(); // TODO: update the biases based on past mistakes
+    void update_biases(std::shared_ptr<PairTimes> pair_times);
 
     std::string random_word();
 
@@ -19,7 +20,7 @@ private:
 
     // NOTE: each word gets a bias indicating its relative probability
     // higher bias means higher probability
-    std::vector<int> biases;
+    std::vector<double> biases;
 };
 
 #endif //TYPTRAC_RANDOM_H
