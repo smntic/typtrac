@@ -1,10 +1,11 @@
 #include "type_stats.h"
+#include "utils.h"
 #include <algorithm>
 #include <chrono>
 
 TypeStats::TypeStats() 
     : max_duration(MAX_DURATION), words_queue(max_duration), chars_queue(max_duration), errors_queue(max_duration) {
-    double start_time = get_seconds();
+    double start_time = Utils::get_seconds();
     words_queue.start(start_time);
     chars_queue.start(start_time);
     errors_queue.start(start_time);
@@ -41,7 +42,7 @@ void TypeStats::update_changes() {
 }
 
 void TypeStats::update_queues() {
-    double seconds = get_seconds();
+    double seconds = Utils::get_seconds();
     words_queue.update(seconds);
     chars_queue.update(seconds);
     errors_queue.update(seconds);
@@ -68,10 +69,5 @@ double TypeStats::get_cpm() const {
 
 double TypeStats::get_accuracy() const {
     return accuracy;
-}
-
-double TypeStats::get_seconds() const {
-    auto now = std::chrono::high_resolution_clock::now();
-    return std::chrono::duration<double>(now.time_since_epoch()).count();
 }
 

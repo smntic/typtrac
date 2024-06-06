@@ -29,8 +29,6 @@ private:
     double max_duration;
 
     TimeQueue words_queue, chars_queue, errors_queue;
-
-    double get_seconds() const;
 };
 
 #endif //TYPTRAC_TYPE_STATS_H

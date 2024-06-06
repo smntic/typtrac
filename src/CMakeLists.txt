@@ -20,6 +20,7 @@ set(SOURCES
     pair_timer.cpp
     app_data.cpp
     language.cpp
+    utils.cpp
 )
 
 set(INCLUDE_DIRS

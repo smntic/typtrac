@@ -17,8 +17,6 @@ public:
 private:
     std::shared_ptr<PairTimes> pair_times;
     double start_seconds;
-
-    double get_seconds() const;
 };
 
 #endif //TYPTRAC_PAIR_TIMER_H
