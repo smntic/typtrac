@@ -2,6 +2,7 @@
 #define TYPTRAC_RANDOM_H
 
 #include "pair_times.h"
+#include "language.h"
 #include <memory>
 #include <vector>
 
@@ -15,6 +16,8 @@ public:
     std::string random_word();
 
 private:
+    Language language;
+
     void init_biases();
     void init_random();
 

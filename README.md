@@ -16,3 +16,9 @@ cd build
 sudo make install
 ```
 
+# Configuration
+You may alter the sadist's words by editing the `~/.local/share/typtrac/language.txt` file.\
+Each line in the file should contain one word.
+
+The language is otherwise copied from `/usr/local/share/typtrac/language.txt`.
+

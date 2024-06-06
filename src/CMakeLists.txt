@@ -18,6 +18,8 @@ set(SOURCES
     time_queue.cpp
     pair_times.cpp
     pair_timer.cpp
+    app_data.cpp
+    language.cpp
 )
 
 set(INCLUDE_DIRS
