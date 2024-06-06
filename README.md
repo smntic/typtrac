@@ -1,5 +1,5 @@
 # typtrac
-typtrac hates you. It wants to watch you suffer.\
+typtrac hates you. It wants to watch you suffer.
 
 # Installation
 To install the most annoying typing test of all time using CMake:
