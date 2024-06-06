@@ -15,3 +15,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(src)
 
+set(CMAKE_INSTALL_PREFIX /usr/local)
+
+set(BIN_INSTALL_DIR bin)
+set(LIB_INSTALL_DIR lib)
+set(INCLUDE_INSTALL_DIR include)
+set(SHARE_INSTALL_DIR share)
+
+install(TARGETS typtrac DESTINATION ${BIN_INSTALL_DIR})
+
