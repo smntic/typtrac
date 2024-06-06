@@ -15,7 +15,7 @@ double PairTimes::get_time(char first, char second) {
 }
 
 double PairTimes::get_word_time(const std::string &word) {
-    double time = 0.0;
+    double time = average_time;
     for (size_t i = 0; i < word.size() - 1; i++) {
         time += get_time(word[i], word[i + 1]);
     }

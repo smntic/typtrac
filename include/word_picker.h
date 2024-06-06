@@ -4,6 +4,7 @@
 #include "pair_times.h"
 #include "language.h"
 #include <memory>
+#include <random>
 #include <vector>
 
 class WordPicker {
@@ -20,6 +21,9 @@ private:
 
     void init_biases();
     void init_random();
+
+    std::random_device rd;
+    std::mt19937 gen;
 
     // NOTE: each word gets a bias indicating its relative probability
     // higher bias means higher probability
