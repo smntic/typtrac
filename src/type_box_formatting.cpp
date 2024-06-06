@@ -25,27 +25,31 @@ void TypeBoxFormatting::wrap_text(std::string &typed_text, std::string &wrong_te
         int cur_word_length = current_word_length(total_text, i);
 
         // we hit the end of the line
-        if (col == width && total_text[i] != ' ' && cur_word_length <= width) {
-            // 'backspace' to start of current word
-            while (i > 0 && total_text[i-1] != ' ') {
-                size_t delete_index = which_text_to_delete(wrapped_texts);
-                wrapped_texts[delete_index].pop_back();
-                i--;
-                col--;
+        if (col == width-1) {
+            if (total_text[i] != ' ' && cur_word_length <= width-1) {
+                // 'backspace' to start of current word
+                while (i > 0 && total_text[i-1] != ' ') {
+                    size_t delete_index = which_text_to_delete(wrapped_texts);
+                    wrapped_texts[delete_index].pop_back();
+                    i--;
+                    col--;
+                }
+                // 'space' until the end of the line
+                while (col < width-1) {
+                    size_t write_index = which_text_to_write(texts, i-1);
+                    wrapped_texts[write_index].push_back(' ');
+                    col++;
+                }
+            } else {
+                // prevent adding a space at the start of lines
+                if (total_text[i] == ' ') {
+                    continue;
+                }
             }
-            // 'space' until the end of the line
-            while (col < width) {
-                size_t write_index = which_text_to_write(texts, i-1);
-                wrapped_texts[write_index].push_back(' ');
-                col++;
-            }
+
             col = 0;
-        } else if (col == width) {
-            col = 0;
-            // prevent adding a space at the start of lines
-            if (total_text[i] == ' ') {
-                continue;
-            }
+            size_t write_index = which_text_to_write(texts, i-1);
+            wrapped_texts[write_index].push_back(' ');
         }
 
         size_t write_index = which_text_to_write(texts, i);
