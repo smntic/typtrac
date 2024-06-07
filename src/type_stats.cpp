@@ -19,6 +19,10 @@ void TypeStats::update(const std::string &typed_text, const std::string &wrong_t
     update_changes();
     update_queues();
     update_stats();
+
+    prev_typed_text = this->typed_text;
+    prev_wrong_text = this->wrong_text;
+    prev_untyped_text = this->untyped_text;
 }
 
 void TypeStats::update_changes() {
@@ -56,7 +60,7 @@ void TypeStats::update_stats() {
     double cur_duration = words_queue.get_duration();
     wpm = words_queue.query() / cur_duration * 60.0;
     cpm = chars_queue.query() / cur_duration * 60.0;
-    accuracy = std::max(0.0, 1 - (double)errors_queue.query() / chars_queue.query());
+    accuracy = std::max(0.0, 1.0 - (double)errors_queue.query() / chars_queue.query());
 }
 
 double TypeStats::get_wpm() const {
