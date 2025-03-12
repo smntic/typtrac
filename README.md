@@ -5,7 +5,7 @@ typtrac hates you. It wants to watch you suffer.
 To install the most annoying typing test of all time using CMake:
 ``` bash
 # clone the repository
-git clone https://github.com/smnast/typtrac
+git clone https://github.com/smntic/typtrac
 cd typtrac
 
 # cmake
